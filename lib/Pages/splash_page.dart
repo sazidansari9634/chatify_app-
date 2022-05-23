@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 //Pacakges
 import 'package:firebase_core/firebase_core.dart';
+import 'package:get_it/get_it.dart';
+
+//services
+import '../services/navigation_service.dart';
 
 
 class SplashPage extends StatefulWidget{
@@ -32,8 +36,8 @@ class _SplashPageState extends State<SplashPage>{
   Widget build(BuildContext context) {
    return  MaterialApp(
      title: 'Chatify',
-     theme: ThemeData(backgroundColor: Color.fromRGBO(36, 35, 49, 1.0),
-     scaffoldBackgroundColor: Color.fromRGBO(36, 35, 49, 1.0),
+     theme: ThemeData(backgroundColor: const Color.fromRGBO(36, 35, 49, 1.0),
+     scaffoldBackgroundColor: const Color.fromRGBO(36, 35, 49, 1.0),
      ),
 
      home: Scaffold(
@@ -55,9 +59,10 @@ class _SplashPageState extends State<SplashPage>{
   Future<void> _setup() async {
     WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp();
+    _registerServices();
     
   }
   void _registerServices(){
-
+     GetIt.instance.registerSingleton<NavigationService>(NavigationService(),);  
   }
 }
