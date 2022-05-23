@@ -1,3 +1,4 @@
+import 'package:chatify_app/services/media_service.dart';
 import 'package:flutter/material.dart';
 
 //Pacakges
@@ -5,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 
 //services
+import '../services/navigation_service.dart';
 import '../services/navigation_service.dart';
 
 
@@ -64,5 +66,10 @@ class _SplashPageState extends State<SplashPage>{
   }
   void _registerServices(){
      GetIt.instance.registerSingleton<NavigationService>(NavigationService(),);  
+
+     GetIt.instance.registerSingleton<MediaService>(MediaService(),);
+
   }
+
+  
 }
