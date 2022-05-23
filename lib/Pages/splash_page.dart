@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+//Pacakges
+import 'package:firebase_core/firebase_core.dart';
+
 
 class SplashPage extends StatefulWidget{
   final VoidCallback onInitializationComplete;
@@ -21,6 +24,8 @@ class _SplashPageState extends State<SplashPage>{
   void initState() {
 
     super.initState();
+
+    _setup().then((_) => widget.onInitializationComplete(),);
   }
 
   @override
@@ -36,7 +41,7 @@ class _SplashPageState extends State<SplashPage>{
          child: Container(
            height: 200,
            width: 200,
-           decoration: BoxDecoration(
+           decoration: const BoxDecoration(
              image: DecorationImage(
                fit: BoxFit.contain,
                image: AssetImage('assets/images/chatcoin.png'),
@@ -46,5 +51,13 @@ class _SplashPageState extends State<SplashPage>{
        ),
      ),
    );
+  }
+  Future<void> _setup() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
+    
+  }
+  void _registerServices(){
+
   }
 }
